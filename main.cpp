@@ -1,14 +1,16 @@
 #include <iostream>
 #include <string>
+#include <limits.h>
 
 extern "C" {
-	#include "libprintf.h"
+	#include "ft_printf.h"
 }
 
 int main()
 {
 	int num, real_len, my_len, op;
-	std::string str;
+	char *str = NULL;
+	const char *args[] = {"./programa", NULL};
 	unsigned int unum;
 	char a, u;
 
@@ -24,6 +26,7 @@ int main()
 		std::cout << "6. Hexadecimal" << std::endl;
 		std::cout << "7. Direccion de memoria de una variable." << std::endl;
 		std::cout << "8. Exit." << std::endl;
+		std::cout << "9. Actualizar." << std::endl;
 		std::cout << "Selecciona opcion: " << std::flush;
 		std::cin >> op;
 
@@ -65,9 +68,9 @@ int main()
 				{
 					std::cin.ignore(10000, '\n');
 					std::cout << "Cadena a imprimir: " << std::flush;
-					getline(std::cin, str);
-					my_len = ft_printf("El resultado desde ft_printf es: %s\n", str.c_str());
-					real_len = printf("El resultado desde printf es: %s\n", str.c_str());
+					//getline(std::cin, str);
+					my_len = ft_printf("El resultado desde ft_printf es: %s\n", str);
+					real_len = printf("El resultado desde printf es: %s\n", str);
 
 					if (real_len + 3 == my_len)
 						std::cout << "Longitud OK" << std::endl;
@@ -154,8 +157,24 @@ int main()
 
 			case 8:
 				std::cout << "Saliendo.." << std::endl;
+				exit(0);
 				break; 
+
+			case 9:
+				if (system("g++ main.cpp ft_printf.c fts_put.c -o programa") != 0)
+				{
+					std::cout << "Error de compilacion o demasiados intentos.\nSaliendo del programa ..." << std::endl;
+					std::cin.ignore(10000, '\n');
+					std::cin.get();
+					return 1;
+				}
+				std::cout << "Recompilacio exitosa. Su programa ha sido actualizado" << std::endl;
+				execvp(args[0], (char *const *)args);
+				perror("Error critico de execvp\n");
+				break;
+
 			default:
+				std::cout << "Opcion no valida, vuelva a intentar." << std::endl;
 				break;
 		}
 		fflush(stdout);
