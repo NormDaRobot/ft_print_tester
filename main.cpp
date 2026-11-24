@@ -69,8 +69,8 @@ int main()
 					std::cin.ignore(10000, '\n');
 					std::cout << "Cadena a imprimir: " << std::flush;
 					getline(std::cin, str);
-					my_len = ft_printf("El resultado desde ft_printf es: %s\n", str.cstr());
-					real_len = printf("El resultado desde printf es: %s\n", str.cstr());
+					my_len = ft_printf("El resultado desde ft_printf es: %s\n", str.c_str());
+					real_len = printf("El resultado desde printf es: %s\n", str.c_str());
 
 					if (real_len + 3 == my_len)
 						std::cout << "Longitud OK" << std::endl;
