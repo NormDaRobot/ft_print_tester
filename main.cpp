@@ -9,7 +9,7 @@ extern "C" {
 int main()
 {
 	int num, real_len, my_len, op;
-	char *str = NULL;
+	std::string str;
 	const char *args[] = {"./programa", NULL};
 	unsigned int unum;
 	char a, u;
@@ -68,9 +68,9 @@ int main()
 				{
 					std::cin.ignore(10000, '\n');
 					std::cout << "Cadena a imprimir: " << std::flush;
-					//getline(std::cin, str);
-					my_len = ft_printf("El resultado desde ft_printf es: %s\n", str);
-					real_len = printf("El resultado desde printf es: %s\n", str);
+					getline(std::cin, str);
+					my_len = ft_printf("El resultado desde ft_printf es: %s\n", str.cstr());
+					real_len = printf("El resultado desde printf es: %s\n", str.cstr());
 
 					if (real_len + 3 == my_len)
 						std::cout << "Longitud OK" << std::endl;
