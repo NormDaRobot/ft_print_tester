@@ -144,8 +144,8 @@ int main()
 				do
 				{
 					std::cout << "4. Vamos a imprimir la direccion de memoria de el string anterior" << std::endl;
-					printf("La ubicacion de memoria de la var str desde el printf es: %p\n", &str);
-					ft_printf("La ubicacion de memoria de la var str desde el ft_printf es: %p\n", &str);
+					real_len = printf("La ubicacion de memoria de la var str desde el printf es: %p\n", (void *)0);
+					my_len = ft_printf("La ubicacion de memoria de la var str desde el ft_printf es: %p\n", (void *)0);
 					if (real_len + 3 == my_len)
 						std::cout << "Longitud OK" << std::endl;
 					else
